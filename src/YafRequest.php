@@ -25,7 +25,7 @@ class YafRequest
         if (!class_exists('Yaf_Application')) {
             throw new \RuntimeException('Yaf extension required');
         }
-        $this->yafRequest = Yaf_Application::app()->getDispatcher()->getRequest();
+        $this->yafRequest = \Yaf_Application::app()->getDispatcher()->getRequest();
         $this->filter = new Filter();
     }
 
@@ -77,10 +77,18 @@ class YafRequest
         return $this->_getVar('c', $name, $var_type, $options);
     }
 
+    /**
+     * @param $var_class
+     * @param $name
+     * @param null $var_type
+     * @param array $options
+     * @return null
+     */
     private function _getVar($var_class, $name, $var_type = null, $options = [])
     {
-        if (isset($this->filter_vars[$var_class][$name][$var_type])) {
-            return $this->filter_vars[$var_class][$name][$var_type];
+        $vt = $var_type === null ? 'null' : $var_type;
+        if (isset($this->filter_vars[$var_class][$name][$vt])) {
+            return $this->filter_vars[$var_class][$name][$vt];
         }
 
         if (empty($options)) {
@@ -103,7 +111,7 @@ class YafRequest
                 return null;
         }
         $filter_value = $this->filter->validate($value, $var_type, $options);
-        $this->filter_vars[$var_class][$name][$var_type] = $filter_value;
+        $this->filter_vars[$var_class][$name][$vt] = $filter_value;
 
         return $filter_value;
     }

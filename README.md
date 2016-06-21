@@ -6,7 +6,7 @@ Installation
 ------------
 `imj\yaf-request` dependent on [imj\filter](https://github.com/itsmikej/Filter)
 ```shell
-composer require imj\yaf-request
+composer require imj/yaf-request
 ```
 
 Basic Usage
