@@ -4,7 +4,7 @@ Yaf request class encapsulation
 
 Installation
 ------------
-`imj\yaf-request` dependent on [imj\filter](https://github.com/itsmikej/Filter)
+`imj/yaf-request` dependent on [imj/filter](https://github.com/itsmikej/Filter)
 ```shell
 composer require imj/yaf-request
 ```
